@@ -1,62 +1,3 @@
-//#region jQuery intro project
-//change div background color with jquery,
-//and display text from input box on dom with jquery
-$( document ).ready( bla );
-
-function bla(){
-  $('#say-hello-button').on('click', sayHello);
-  $('h2').mouseenter(h2MouseEnter);
-  $('h2').mouseleave(h2MouseLeave);
-  $('.clicker').on('click', changeTextColor);
-}
-
-function h2MouseEnter () {
-  $(this).css('background-color', 'red');
-}
-
-function h2MouseLeave () {
-  $(this).css('background-color', 'white');
-}
-function sayHello() {
-  let userName = $('#name-input').val();
-  let message = 'hello ' + userName;
-  $('#name-input').val('');
-
-  let outputElement = $('#hello-out');
-  outputElement.text(message);  
-}
-
-function changeTextColor(){
-  $(this).css('color', 'green');
-}
-
-// "$" means "Hey, JQuery..."
-$( document ).ready( onReady );
-
-function onReady(){
-    console.log( `JQ` ); // using backticks, not signle quotes
-    // click on a button with an ID, run a function
-    $( '#getTextButton' ).on( 'click', getText );
-} // end onReady
-
-function showText( textToShow ){
-    /// - target an element and put some text in it - ///
-    // target an element and hold it in a variable
-    let el = $( '#hello' ); // # = id
-    el.empty(); // empty target el
-    el.append( textToShow ); // append text into el
-} // end showText
-
-function getText(){
-    // target an element by ID & get its .val()
-    let texter = $( '#textIn' ).val(); // getter 
-    // empty out the input field
-    $( '#textIn' ).val( '' ); // setter
-    // console log the value
-    showText( `you typed: ${ texter }` );
-} // end getText
-//#endregion
-
 //#region fizzbuzz function
 //FizzOrBuzz function takes in a num and returns 'fizz' if divisible by 3,
 //'buzz' if divisible by 5, and 'fizzbuzz' if divisible by both.
@@ -363,5 +304,148 @@ function alphabetPosition(text) {
   }
   return numArray.join(' ');
 }
+//#endregion
+
+//#region Fibonacci
+// function productFib(prod){
+//   //takes in an integer
+//   //if that integer is the product of (any) two consecutive fib numbers,
+//     //return [fn, fn+1, true] (where fn and fn+1 are the two fib numbers)
+//   //else, return [fn, fn+1, false]
+  
+//   //i think you would need to build the array of fibonaccis 
+//   //each time you run the function? (up to the point of your input #)
+  
+//   //or else work backwards each time... let's consider prod=15
+//   //fib[4]*fib[5]=prod (3*5)
+//   //if 
+// }
+//#endregion 
+
+//#region JumpGame
+// Given an array of non-negative integers, A, you are initially positioned at the 0th index of the array.
+// Each element in the array represents your maximum jump length at that position.
+// Determine if you are able to reach the last index.
+
+let trueArray = [3,7,2,1,2,5,3,4,4,1];
+let trueArray2 = [1,4,99,14,1,2,3,1,7];
+let falseArray = [2,1,2,1,0,9];
+let falseArray2 = [1,0,4];
+
+//in this example we 'overshoot' the final index, which I think counts as a yes? 
+//our function counts it as a yes. Instructions unclear. 
+let mysteryArray = [1,9,3];
+
+
+function jumpGame(array){
+  let currentIndex = array[0];
+
+  for(let i=0; i<array.length; i++) {
+    //splice the array so our new jump-place is now the first element
+    array = array.splice(currentIndex);
+
+    //now that the array begins at our new index, can set cI to [0]
+    currentIndex = array[0];
+  }
+  return array.length > 1 ? 0 : 1;
+}
+console.log('result of trueArray JumpGame:', jumpGame(trueArray));
+console.log('result of falseArray JumpGame:', jumpGame(falseArray));
+console.log('result of mysteryArray JumpGame:', jumpGame(mysteryArray));
+
+// Input Format:
+// The first and the only argument of input will be an integer array A.
+
+// Output Format:
+// Return an integer, representing the answer as described in the problem statement.
+//     => 0 : If you cannot reach the last index.
+//     => 1 : If you can reach the last index.
+
+// Examples:
+
+// Input 1:
+//     A = [2,3,1,1,4]
+// Output 1:
+//     1
+// Explanation 1:
+//     Index 0 -> Index 2 -> Index 3 -> Index 4
+
+// Input 2:
+//     A = [3,2,1,0,4]
+// Output 2:
+//     0
+// Explanation 2:
+//     There is no possible path to reach the last index.
+//#endregion
+
+//#region Spell The Number
+
+ //see codewars
+
+let array = '1 2 3 4 5'.split(' ');
+array.splice(2,1)
+console.log(array);
+//#endregion
+
+//#region Leap Years
+//find the leap years - in map:
+// let years = [2000, 1600, 1700, 2004, 2005, 2006]
+
+// years.map( (year)=> {
+//   if (year % 400 === 0)
+//     console.log(year, 'is a leap year');
+//   else if (year % 100 === 0)
+//     console.log(year, 'is NOT a leap year');
+//   else if (year % 4 === 0)
+//     console.log(year, 'is a leap year');
+//   else
+//     console.log(year, 'is NOT a leap year');
+// })
+//#endregion
+
+//#region SPREAD function practice: 
+let numArray = [1,2,3,4,5,6,7,8,9];
+let newArray = [];
+
+numArray.map( (num)=>{
+  if (num % 2 === 0){
+    newArray = [...newArray, num];
+  }
+})
+console.log(newArray);
+
+
+let years = [2000, 2000, 1600, 1700, 2004, 2005, 2006]
+let leapYears = [];
+
+years.map( (year)=> {
+  if (year % 400 === 0)
+    leapYears = [...leapYears, year];
+  else if (year % 100 === 0)
+    console.log(year, 'is NOT a leap year');
+  else if (year % 4 === 0)
+    leapYears = [...leapYears, year];
+  else
+    console.log(year, 'is NOT a leap year');
+})
+
+console.log('leap years:', leapYears);
+
+
+
+let thing = {
+  someThing: 1,
+  otherThing: 'q'
+}
+console.log('thing:', thing);
+thing = {
+  ...thing,
+  otherThing: 'a'
+}
+console.log('thing:', thing);
+
+
+
+
 //#endregion
 
