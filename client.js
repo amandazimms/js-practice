@@ -498,7 +498,6 @@ console.log('parallel:', doubleFinder(parallel));
 
 //#endregion
 
-
 //#region find leap years
 
 let years = [2000, 1600, 1700, 2004, 2005, 2006]
@@ -514,6 +513,125 @@ years.map( (year)=> {
     console.log(year, 'is NOT a leap year');
 })
 //#endregion 
+
+//#region Map vs For: find the evens
+let numArray = [1,2,3,4,5,6,7,8];
+
+//find the evens - in a for loop:
+for (let i=0; i<numArray.length; i++){
+  if (numArray[i] % 2 ===0){
+    console.log(numArray[i], 'is even');
+  }
+}
+
+//find the evens - in map:
+numArray.map( (numer0)=> {
+  if (numer0 % 2 === 0){
+    console.log(numer0, 'is even');
+  }
+})
+
+//#endregion 
+
+//#region String and Domains Practice
+//Question 1. Write a function that consumes two arguments: 
+//the array and a domain (eg: "asdf.com"). 
+//Return an array of all users with the given domain.
+
+
+
+let users = [
+     {
+         id: 1,
+         email: "asdf@qwer.com",
+         role: "user"
+     },
+     {
+         id: 2,
+         email: "qwer@asdf.com",
+         role: "admin"
+     },
+     {
+         id: 5,
+         email: "zxcv@qwer.com",
+         role: "superAdmin"
+     },
+     {
+         id: 9,
+         email: "asdf@yahoo.com",
+         role: "user"
+     },
+     {
+         id: 9,
+         email: "zxcv@yahoo.com",
+         role: "admin"
+     },
+     {
+         id: 9,
+         email: "qwer@yahoo.com",
+         role: "admin"
+     },
+     {
+         id: 10,
+         email: "asdf@gmail.com",
+         role: "admin"
+     },
+  ]
+
+  
+
+  
+function commonDomains(arrayOfUsers, domainToCheckAgainst){
+	//declare the new array of matches (empty)
+	let matchingDomainEmails = [];
+
+	//loop thru the array
+	for (let i = 0; i<arrayOfUsers.length; i++){
+		let thisDomain = arrayOfUsers[i].email.slice(5);
+    
+		if (thisDomain === domainToCheckAgainst)
+      matchingDomainEmails.push(arrayOfUsers[i]);
+
+	}
+	return matchingDomainEmails;	
+}
+
+console.log("q1:", commonDomains(users, 'yahoo.com') );
+
+//Question 2. Write a function that takes three arguments: 
+//the array, a domain, and a role. 
+//Return an array of all users who have that role and are from that domain.
+
+function roleAndDomainChecker(arrayOfUsers, domainToCheckAgainst, roleToCheckAgainst){
+  
+  let matches = [];
+  for (let i = 0; i<arrayOfUsers.length; i++){
+    let user = arrayOfUsers[i];
+    if (user.email.includes(domainToCheckAgainst) && user.role === roleToCheckAgainst)
+      matches.push(user);
+  }
+  return matches;
+}
+console.log("q2", roleAndDomainChecker(users, 'yahoo.com', 'admin') );
+
+//3. Write a function that loops through the array 
+//& checks the domain and role of each object. 
+//If the domain is "qwer.com", change the role to "admin" 
+//unless the user is already a "superAdmin" then you can leave them as is.
+// Return the updated array.
+
+function makeQwerDomainUsersAdmins(arrayOfUsers){
+  for (let i = 0; i<arrayOfUsers.length; i++){
+    let user = arrayOfUsers[i];
+    if (user.email.includes('qwer.com') )
+      if (user.role !== 'superAdmin')
+        user.role = 'admin';
+  }
+  return arrayOfUsers;
+}
+console.log("q3", makeQwerDomainUsersAdmins(users));
+
+//#endregion
 
 
 
