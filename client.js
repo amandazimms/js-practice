@@ -449,3 +449,72 @@ console.log('thing:', thing);
 
 //#endregion
 
+//#region Find Longest Consecutive Ones
+
+//challenge: find the longest stretch of ones - how many ones long is it? if no ones, return 0
+let five=[0,1,0,1,0,1,1,1,0,1,1,1,1,1,0,1];
+let three=[1,0,1,1,1,0,1,1,0,0];
+let two=[0,1,1,0,1,0,1,1];
+
+function onesfinder(array){
+  let mostOnes = 0;
+  let currentOnes = 0;
+  for (let i=0; i<array.length; i++) {
+    array[i] === 0 ? currentOnes = 0 : currentOnes++;
+    if(currentOnes > mostOnes) {
+      mostOnes = currentOnes;
+    }
+  }
+  return mostOnes;
+}
+
+console.log('two:', onesfinder(two));
+console.log('five:', onesfinder(five));
+console.log('three:', onesfinder(three));
+
+//#endregion
+
+//#region Find Index of First Recurring Letter
+
+//challenge: return index of first recurring letter, e.g. the 2nd L in hello
+let hello='hello';
+let elephantExcel='elephant excel';
+let aaaah='aaaah';
+let parallel='parallel';
+
+function doubleFinder(string){
+	for(let i=0; i<string.length; i++){
+		if(string[i] === string[i+1]){
+			return i+1;
+		}
+	}
+	return -1
+}
+
+console.log('hello:', doubleFinder(hello));
+console.log('aaah:', doubleFinder(aaaah));
+console.log('elep:', doubleFinder(elephantExcel));
+console.log('parallel:', doubleFinder(parallel));
+
+//#endregion
+
+
+//#region find leap years
+
+let years = [2000, 1600, 1700, 2004, 2005, 2006]
+
+years.map( (year)=> {
+  if (year % 400 === 0)
+    console.log(year, 'is a leap year');
+  else if (year % 100 === 0)
+    console.log(year, 'is NOT a leap year');
+  else if (year % 4 === 0)
+    console.log(year, 'is a leap year');
+  else
+    console.log(year, 'is NOT a leap year');
+})
+//#endregion 
+
+
+
+
